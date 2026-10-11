@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OpsIdea | AI, DevOps & Automation</title>
+
+    <meta name="description"
+          content="OpsIdea explores AI, DevOps, Cloud Engineering, and intelligent automation.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            margin-left: 24px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 110px 20px 90px;
+            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 64px);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 8px;
+            border-radius: 8px;
+            background: #0284c7;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .button.secondary {
+            background: transparent;
+            border: 1px solid #38bdf8;
+        }
+
+        section {
+            padding: 70px 8%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .intro {
+            max-width: 750px;
+            margin: 0 auto;
+            color: #cbd5e1;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            margin-top: 35px;
+        }
+
+        .card {
+            padding: 28px;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            background: #1e293b;
+            text-align: left;
+        }
+
+        .card h3 {
+            color: #38bdf8;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+        }
+
+        #contact {
+            background: #1e293b;
+        }
+
+        #contact a {
+            color: #38bdf8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #94a3b8;
+            border-top: 1px solid #334155;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .hero {
+                padding-top: 75px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">OpsIdea.</div>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Focus Areas</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <h1>Ideas into <span>Intelligent Operations.</span></h1>
+
+            <p>
+                Exploring the intersection of Artificial Intelligence,
+                DevOps, Cloud Engineering, and intelligent automation
+                to build practical technology solutions.
+            </p>
+
+            <a class="button"
+               href="https://github.com/stalinraja-afm/opsidea-website">
+                Explore on GitHub
+            </a>
+
+            <a class="button secondary" href="#projects">
+                Explore Focus Areas
+            </a>
+        </section>
+
+        <section id="about">
+            <h2>About OpsIdea</h2>
+
+            <p class="intro">
+                OpsIdea is a technology initiative focused on exploring
+                ideas, building developer tools, experimenting with AI,
+                and automating everyday engineering workflows.
+                Our goal is to turn practical ideas into useful solutions
+                through continuous learning and experimentation.
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2>What We're Exploring</h2>
+
+            <p class="intro">
+                Our focus areas span modern infrastructure,
+                intelligent systems, and developer productivity.
+            </p>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>☁️ Cloud Engineering</h3>
+                    <p>
+                        Cloud infrastructure, scalable architectures,
+                        and infrastructure automation.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>⚙️ DevOps & Platform Engineering</h3>
+                    <p>
+                        CI/CD, containers, Kubernetes, GitOps,
+                        and reliable software delivery.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🤖 AI Engineering</h3>
+                    <p>
+                        AI applications, LLM integrations,
+                        intelligent agents, and practical AI tools.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🔄 Intelligent Automation</h3>
+                    <p>
+                        Workflow automation, API integrations,
+                        and AI-powered automation experiments.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Let's Connect</h2>
+
+            <p class="intro">
+                Interested in AI, DevOps, Cloud Engineering,
+                or automation? Explore our projects on GitHub.
+            </p>
+
+            <a class="button"
+               href="https://github.com/stalinraja-afm">
+                Visit GitHub Profile
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OpsIdea. Built with curiosity and code.</p>
+    </footer>
+
+</body>
+</html>
