@@ -546,6 +546,9 @@
         (async function loadRepos() {
             const container = document.getElementById('repo-cards');
             const excluded = new Set(['opsidea-website']);
+            const escapeHtml = s => s.replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[c]));
 
             try {
                 const res = await fetch('https://api.github.com/users/stalinraja-afm/repos?sort=updated&per_page=100');
@@ -566,10 +569,10 @@
                 container.innerHTML = repos.map((r, i) => `
                     <div class="repo-card card">
                         ${i === 0 ? '<span class="repo-badge">Latest</span>' : ''}
-                        <h3><a href="${r.html_url}" target="_blank" rel="noopener noreferrer">${r.name}</a></h3>
-                        <p>${r.description ? r.description : 'No description yet.'}</p>
+                        <h3><a href="${r.html_url}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.name)}</a></h3>
+                        <p>${r.description ? escapeHtml(r.description) : 'No description yet.'}</p>
                         <div class="repo-meta">
-                            ${r.language ? `<span><span class="repo-lang-dot"></span>${r.language}</span>` : ''}
+                            ${r.language ? `<span><span class="repo-lang-dot"></span>${escapeHtml(r.language)}</span>` : ''}
                             <span>Updated ${new Date(r.pushed_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
                         </div>
                     </div>
