@@ -87,6 +87,14 @@
             color: #e2e8f0;
             text-decoration: none;
             margin-left: 24px;
+            padding-bottom: 2px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        nav a.active {
+            color: #38bdf8;
+            border-bottom-color: #38bdf8;
         }
 
         .hero {
@@ -459,6 +467,20 @@
     </footer>
 
     <script>
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        const navTargets = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+        const spyObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = '#' + entry.target.id;
+                    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+                }
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+
+        navTargets.forEach(section => spyObserver.observe(section));
+
         document.querySelectorAll('.card').forEach(el => el.classList.add('reveal'));
 
         const observer = new IntersectionObserver(entries => {
