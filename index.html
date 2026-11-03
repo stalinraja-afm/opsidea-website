@@ -449,6 +449,10 @@
             <div id="repo-cards" class="cards repo-cards" aria-live="polite">
                 <p class="repo-status">Loading repositories…</p>
             </div>
+
+            <p id="repo-view-all" class="repo-status" style="display:none; margin-top: 30px;">
+                <a href="https://github.com/stalinraja-afm?tab=repositories" target="_blank" rel="noopener noreferrer" style="color:#38bdf8;">View all repositories on GitHub &rarr;</a>
+            </p>
         </section>
 
         <section id="contact">
@@ -522,13 +526,16 @@
                 const res = await fetch('https://api.github.com/users/stalinraja-afm/repos?sort=updated&per_page=100');
                 if (!res.ok) throw new Error('GitHub API error ' + res.status);
 
-                const repos = (await res.json())
-                    .filter(r => !r.fork && !excluded.has(r.name))
-                    .slice(0, 6);
+                const allRepos = (await res.json()).filter(r => !r.fork && !excluded.has(r.name));
+                const repos = allRepos.slice(0, 6);
 
                 if (repos.length === 0) {
                     container.innerHTML = '<p class="repo-status">More projects coming soon.</p>';
                     return;
+                }
+
+                if (allRepos.length > repos.length) {
+                    document.getElementById('repo-view-all').style.display = 'block';
                 }
 
                 container.innerHTML = repos.map((r, i) => `
