@@ -121,6 +121,52 @@
             color: #cbd5e1;
         }
 
+        .repo-cards {
+            text-align: left;
+        }
+
+        .repo-status {
+            color: #94a3b8;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        .repo-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .repo-card h3 {
+            font-size: 18px;
+        }
+
+        .repo-card h3 a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .repo-card h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .repo-meta {
+            margin-top: auto;
+            padding-top: 14px;
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .repo-lang-dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #38bdf8;
+            margin-right: 5px;
+        }
+
         #contact {
             background: #1e293b;
         }
@@ -161,6 +207,7 @@
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Focus Areas</a>
+            <a href="#work">Work</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -243,6 +290,18 @@
             </div>
         </section>
 
+        <section id="work">
+            <h2>Recent Work</h2>
+
+            <p class="intro">
+                Live from GitHub — actual repos, not a mockup.
+            </p>
+
+            <div id="repo-cards" class="cards repo-cards">
+                <p class="repo-status">Loading repositories…</p>
+            </div>
+        </section>
+
         <section id="contact">
             <h2>Let's Connect</h2>
 
@@ -264,6 +323,40 @@
     <footer>
         <p>&copy; 2026 OpsIdea. Built with curiosity and code.</p>
     </footer>
+
+    <script>
+        (async function loadRepos() {
+            const container = document.getElementById('repo-cards');
+            const excluded = new Set(['opsidea-website']);
+
+            try {
+                const res = await fetch('https://api.github.com/users/stalinraja-afm/repos?sort=updated&per_page=100');
+                if (!res.ok) throw new Error('GitHub API error ' + res.status);
+
+                const repos = (await res.json())
+                    .filter(r => !r.fork && !excluded.has(r.name))
+                    .slice(0, 6);
+
+                if (repos.length === 0) {
+                    container.innerHTML = '<p class="repo-status">More projects coming soon.</p>';
+                    return;
+                }
+
+                container.innerHTML = repos.map(r => `
+                    <div class="repo-card card">
+                        <h3><a href="${r.html_url}" target="_blank" rel="noopener noreferrer">${r.name}</a></h3>
+                        <p>${r.description ? r.description : 'No description yet.'}</p>
+                        <div class="repo-meta">
+                            ${r.language ? `<span><span class="repo-lang-dot"></span>${r.language}</span>` : ''}
+                            <span>Updated ${new Date(r.pushed_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                container.innerHTML = '<p class="repo-status">Couldn\'t load live projects right now — <a href="https://github.com/stalinraja-afm" target="_blank" rel="noopener noreferrer" style="color:#38bdf8;">see them on GitHub</a>.</p>';
+            }
+        })();
+    </script>
 
 </body>
 </html>
