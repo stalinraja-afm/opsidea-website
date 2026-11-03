@@ -189,8 +189,23 @@
         }
 
         .repo-card {
+            position: relative;
             display: flex;
             flex-direction: column;
+        }
+
+        .repo-badge {
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            background: #0284c7;
+            color: #f8fafc;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 999px;
         }
 
         .repo-card h3 {
@@ -424,8 +439,9 @@
                     return;
                 }
 
-                container.innerHTML = repos.map(r => `
+                container.innerHTML = repos.map((r, i) => `
                     <div class="repo-card card">
+                        ${i === 0 ? '<span class="repo-badge">Latest</span>' : ''}
                         <h3><a href="${r.html_url}" target="_blank" rel="noopener noreferrer">${r.name}</a></h3>
                         <p>${r.description ? r.description : 'No description yet.'}</p>
                         <div class="repo-meta">
