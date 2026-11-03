@@ -66,9 +66,27 @@
         }
 
         .hero {
+            position: relative;
             text-align: center;
             padding: 110px 20px 90px;
-            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            background:
+                radial-gradient(circle, #334155 1px, transparent 1px),
+                linear-gradient(135deg, #0f172a, #1e3a5f);
+            background-size: 28px 28px, 100% 100%;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, transparent 0%, #0f172a 75%);
+            pointer-events: none;
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
