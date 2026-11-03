@@ -34,6 +34,30 @@
             box-sizing: border-box;
         }
 
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #38bdf8;
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 12px;
+            background: #38bdf8;
+            color: #0f172a;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            z-index: 100;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 12px;
+        }
+
         body {
             font-family: 'Inter', Arial, sans-serif;
             background: #0f172a;
@@ -296,6 +320,8 @@
 
 <body>
 
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
     <header>
         <div class="logo">OpsIdea.</div>
 
@@ -307,7 +333,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
 
         <section class="hero">
             <h1>Ideas into <span>Intelligent Operations.</span></h1>
@@ -392,7 +418,7 @@
                 Live from GitHub — actual repos, not a mockup.
             </p>
 
-            <div id="repo-cards" class="cards repo-cards">
+            <div id="repo-cards" class="cards repo-cards" aria-live="polite">
                 <p class="repo-status">Loading repositories…</p>
             </div>
         </section>
