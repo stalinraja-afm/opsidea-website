@@ -15,7 +15,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"></noscript>
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="OpsIdea | AI, DevOps & Automation">
@@ -161,7 +163,7 @@
             padding: 12px 24px;
             margin: 8px;
             border-radius: 8px;
-            background: #0284c7;
+            background: #0369a1;
             color: white;
             text-decoration: none;
             font-weight: bold;
@@ -263,7 +265,7 @@
             position: absolute;
             top: -10px;
             right: 16px;
-            background: #0284c7;
+            background: #075985;
             color: #f8fafc;
             font-size: 11px;
             font-weight: 700;
@@ -304,11 +306,21 @@
             margin-right: 5px;
         }
 
+        .repo-skeleton {
+            min-height: 142px;
+            animation: skeleton-pulse 1.4s ease-in-out infinite;
+        }
+
+        @keyframes skeleton-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+        }
+
         #contact {
             background: #1e293b;
         }
 
-        #contact a {
+        #contact a:not(.button) {
             color: #38bdf8;
         }
 
@@ -471,8 +483,11 @@
                 Live from GitHub — actual repos, not a mockup.
             </p>
 
-            <div id="repo-cards" class="cards repo-cards" aria-live="polite">
-                <p class="repo-status">Loading repositories…</p>
+            <div id="repo-cards" class="cards repo-cards" aria-live="polite" aria-busy="true">
+                <div class="card repo-skeleton" aria-hidden="true"></div>
+                <div class="card repo-skeleton" aria-hidden="true"></div>
+                <div class="card repo-skeleton" aria-hidden="true"></div>
+                <span class="repo-status" style="position:absolute; width:1px; height:1px; overflow:hidden;">Loading repositories…</span>
             </div>
 
             <p id="repo-view-all" class="repo-status" style="display:none; margin-top: 30px;">
@@ -557,6 +572,8 @@
                 const allRepos = (await res.json()).filter(r => !r.fork && !excluded.has(r.name));
                 const repos = allRepos.slice(0, 6);
 
+                container.removeAttribute('aria-busy');
+
                 if (repos.length === 0) {
                     container.innerHTML = '<p class="repo-status">More projects coming soon.</p>';
                     return;
@@ -578,6 +595,7 @@
                     </div>
                 `).join('');
             } catch (err) {
+                container.removeAttribute('aria-busy');
                 container.innerHTML = '<p class="repo-status">Couldn\'t load live projects right now — <a href="https://github.com/stalinraja-afm" target="_blank" rel="noopener noreferrer" style="color:#38bdf8;">see them on GitHub</a>.</p>';
             }
         })();
