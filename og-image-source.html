@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+    }
+
+    body {
+        font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+        background:
+            radial-gradient(circle, #334155 1.5px, transparent 1.5px),
+            linear-gradient(135deg, #0f172a, #1e3a5f);
+        background-size: 32px 32px, 100% 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    body::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at 50% 40%, transparent 0%, #0f172a 78%);
+    }
+
+    .wrap {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 0 80px;
+    }
+
+    .logo {
+        font-size: 44px;
+        font-weight: 700;
+        color: #38bdf8;
+        margin-bottom: 28px;
+        letter-spacing: 0.02em;
+    }
+
+    h1 {
+        font-size: 64px;
+        font-weight: 700;
+        color: #f8fafc;
+        line-height: 1.15;
+        margin-bottom: 24px;
+    }
+
+    h1 span {
+        color: #38bdf8;
+    }
+
+    p {
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 24px;
+        color: #cbd5e1;
+        max-width: 820px;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="logo">OpsIdea.</div>
+        <h1>Ideas into <span>Intelligent Operations.</span></h1>
+        <p>AI, DevOps, Cloud Engineering, and intelligent automation.</p>
+    </div>
+</body>
+</html>
