@@ -304,6 +304,16 @@
             margin-right: 5px;
         }
 
+        .repo-skeleton {
+            min-height: 142px;
+            animation: skeleton-pulse 1.4s ease-in-out infinite;
+        }
+
+        @keyframes skeleton-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+        }
+
         #contact {
             background: #1e293b;
         }
@@ -471,8 +481,11 @@
                 Live from GitHub — actual repos, not a mockup.
             </p>
 
-            <div id="repo-cards" class="cards repo-cards" aria-live="polite">
-                <p class="repo-status">Loading repositories…</p>
+            <div id="repo-cards" class="cards repo-cards" aria-live="polite" aria-busy="true">
+                <div class="card repo-skeleton" aria-hidden="true"></div>
+                <div class="card repo-skeleton" aria-hidden="true"></div>
+                <div class="card repo-skeleton" aria-hidden="true"></div>
+                <span class="repo-status" style="position:absolute; width:1px; height:1px; overflow:hidden;">Loading repositories…</span>
             </div>
 
             <p id="repo-view-all" class="repo-status" style="display:none; margin-top: 30px;">
@@ -557,6 +570,8 @@
                 const allRepos = (await res.json()).filter(r => !r.fork && !excluded.has(r.name));
                 const repos = allRepos.slice(0, 6);
 
+                container.removeAttribute('aria-busy');
+
                 if (repos.length === 0) {
                     container.innerHTML = '<p class="repo-status">More projects coming soon.</p>';
                     return;
@@ -578,6 +593,7 @@
                     </div>
                 `).join('');
             } catch (err) {
+                container.removeAttribute('aria-busy');
                 container.innerHTML = '<p class="repo-status">Couldn\'t load live projects right now — <a href="https://github.com/stalinraja-afm" target="_blank" rel="noopener noreferrer" style="color:#38bdf8;">see them on GitHub</a>.</p>';
             }
         })();
