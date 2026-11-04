@@ -1,0 +1,17 @@
+# OpsIdea
+
+> OpsIdea is a technology initiative focused on exploring ideas, building developer tools, experimenting with AI, and automating everyday engineering workflows.
+
+OpsIdea explores the intersection of Artificial Intelligence, DevOps, Cloud Engineering, and intelligent automation to build practical technology solutions.
+
+## Focus areas
+
+- Cloud Engineering — cloud infrastructure, scalable architectures, and infrastructure automation.
+- DevOps & Platform Engineering — CI/CD, containers, Kubernetes, GitOps, and reliable software delivery.
+- AI Engineering — AI applications, LLM integrations, intelligent agents, and practical AI tools.
+- Intelligent Automation — workflow automation, API integrations, and AI-powered automation experiments.
+
+## Links
+
+- [GitHub](https://github.com/stalinraja-afm): source code and live project repositories
+- [Contact](mailto:stalinraja.ai@gmail.com): email
