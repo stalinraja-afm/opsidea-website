@@ -569,6 +569,10 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        setTimeout(() => {
+            document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => el.classList.add('is-visible'));
+        }, 1500);
+
         (async function loadRepos() {
             const container = document.getElementById('repo-cards');
             const excluded = new Set(['opsidea-website']);
